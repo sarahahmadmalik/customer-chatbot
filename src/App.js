@@ -13,13 +13,13 @@ const App = () => {
 
   useEffect(() => {
     addBotMessage("Hi, what can I help you with?");
-  }, []);
+  }, [addBotMessage]);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  const addBotMessage = async (text) => {
+  const addBotMessage = useCallback(async (text) => {
     const newMessages = [...messages, { text, user: false }];
     setMessages(newMessages);
 
@@ -32,7 +32,7 @@ const App = () => {
     // } catch (error) {
     //   console.error('Error sending message to backend:', error);
     // }
-  };
+  }, [messages]);
 
   const handleSendMessage = async () => {
     if (input.trim() === '') return;
