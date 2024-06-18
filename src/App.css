@@ -152,12 +152,12 @@ html, body{
   display: inline-block;
 }
 
-:where(.css-dev-only-do-not-override-1fumvat).ant-input-outlined {
+.ant-input-outlined {
   border: none !important;
   padding: 20px;
 }
 
-:where(.css-dev-only-do-not-override-1fumvat).ant-btn-primary {
+.ant-btn-primary {
 
   padding: 15px  !important;
   font-size: 1.5rem !important;
