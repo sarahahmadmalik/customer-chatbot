@@ -21,6 +21,8 @@ const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const sessionId = v4()
 const sessionClient = new SessionsClient({ keyFilename: credentialsPath });
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 app.post('/api/message', async (req, res) => {
     const { message } = req.body;
 
@@ -49,3 +51,4 @@ app.post('/api/message', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
