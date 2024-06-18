@@ -10,15 +10,6 @@ const App = () => {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const messagesEndRef = useRef(null);
-
-  useEffect(() => {
-    addBotMessage("Hi, what can I help you with?");
-  }, [addBotMessage]);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
   const addBotMessage = useCallback(async (text) => {
     const newMessages = [...messages, { text, user: false }];
     setMessages(newMessages);
@@ -34,6 +25,16 @@ const App = () => {
     // }
   }, [messages]);
 
+
+  useEffect(() => {
+    addBotMessage("Hi, what can I help you with?");
+  }, [addBotMessage]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  
   const handleSendMessage = async () => {
     if (input.trim() === '') return;
 
