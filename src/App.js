@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { List, Input, Avatar, Spin } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import { List, Input, Avatar } from 'antd';
 import { SendOutlined, UserOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import Bot from './image/bot.png';
@@ -9,17 +9,21 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     addBotMessage("Hi, what can I help you with?");
   }, []);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   const addBotMessage = async (text) => {
     const newMessages = [...messages, { text, user: false }];
     setMessages(newMessages);
 
-   
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate typing delay
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     try {
       const response = await axios.post('/api/message', { message: text });
@@ -27,8 +31,6 @@ const App = () => {
       setMessages([...newMessages, { text: botResponse, user: false }]);
     } catch (error) {
       console.error('Error sending message to backend:', error);
-    } finally {
-     
     }
   };
 
@@ -40,7 +42,7 @@ const App = () => {
     setInput('');
 
     setTyping(true);
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate typing delay
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     try {
       const response = await axios.post('http://localhost:5000/api/message', { message: input });
@@ -50,6 +52,12 @@ const App = () => {
       console.error('Error sending message to backend:', error);
     } finally {
       setTyping(false);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -80,16 +88,7 @@ const App = () => {
               </List.Item>
             )}
           />
-          {typing && (
-            <div className='typer'>
-              <Avatar icon={<img src={Bot} alt="Bot" />} />
-            <div className="typing-indicator">
-            <div className="typing-balls"></div>
-            <div className="typing-balls"></div>
-            <div className="typing-balls"></div>
-          </div>
-              </div>
-          )}
+          <div ref={messagesEndRef}></div>
         </div>
         <div className="input-container">
           <Input.Search
