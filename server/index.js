@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import dialogflow from 'dialogflow';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 
 dotenv.config();
 
@@ -11,23 +11,22 @@ const { json } = bodyParser;
 const { SessionsClient } = dialogflow;
 
 const app = express();
-const port = process.env.PORT || 5000;
 
 app.use(json());
-app.use(cors());
+app.use(cors({origin: ["https://customer-chatbot-mauve.vercel.app/"], methods: ["GET", "POST"], credentials: true}));
 
 const projectId = process.env.PROJECT_ID;
 const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-const sessionId = v4()
+// const sessionId = v4()
 const sessionClient = new SessionsClient({ keyFilename: credentialsPath });
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.get("/", (req, res) => res.json("Express on Vercel"));
 
 app.post('/api/message', async (req, res) => {
     const { message } = req.body;
 
     try {
-        const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+        const sessionPath = sessionClient.sessionPath(projectId, "");
         const request = {
             session: sessionPath,
             queryInput: {
@@ -48,7 +47,8 @@ app.post('/api/message', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(5000, () => {
+    console.log(`Server is running on http://localhost:5000`);
 });
+
 
