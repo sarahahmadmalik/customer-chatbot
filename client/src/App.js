@@ -47,7 +47,7 @@ const App = () => {
     await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     try {
-      const response = await axios.post('https://customer-chatbot-mauve.vercel.app/api/message', { message: input });
+      const response = await axios.post('https://customer-chatbot-ai.vercel.app/api/message', { message: input });
       const botResponse = response.data.fulfillmentText;
       setMessages([...newMessages, { text: botResponse, user: false }]);
     } catch (error) {
