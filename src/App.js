@@ -25,13 +25,13 @@ const App = () => {
 
     await new Promise(resolve => setTimeout(resolve, 1000)); 
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/message', { message: text });
-      const botResponse = response.data.fulfillmentText;
-      setMessages([...newMessages, { text: botResponse, user: false }]);
-    } catch (error) {
-      console.error('Error sending message to backend:', error);
-    }
+    // try {
+    //   const response = await axios.post('http://localhost:5000/api/message', { message: text });
+    //   const botResponse = response.data.fulfillmentText;
+    //   setMessages([...newMessages, { text: botResponse, user: false }]);
+    // } catch (error) {
+    //   console.error('Error sending message to backend:', error);
+    // }
   };
 
   const handleSendMessage = async () => {
