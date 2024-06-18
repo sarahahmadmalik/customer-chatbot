@@ -5,7 +5,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { v4 } from 'uuid';
 
-
 dotenv.config();
 
 const { json } = bodyParser;
