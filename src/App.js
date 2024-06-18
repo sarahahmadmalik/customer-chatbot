@@ -89,7 +89,18 @@ const App = () => {
             )}
           />
           <div ref={messagesEndRef}></div>
+          {typing && (
+<div className='typer'>
+<Avatar icon={<img src={Bot} alt="Bot" />} />
+<div className="typing-indicator">
+<div className="typing-balls"></div>
+<div className="typing-balls"></div>
+<div className="typing-balls"></div>
+</div>
+</div>
+)}
         </div>
+        
         <div className="input-container">
           <Input.Search
             placeholder="Type your message here"
