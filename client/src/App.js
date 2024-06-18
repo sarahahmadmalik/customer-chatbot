@@ -10,6 +10,7 @@ const App = () => {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const messagesEndRef = useRef(null);
+  axios.defaults.withCredentials = true;
 
   const addBotMessage = async (text) => {
     const newMessages = [...messages, { text, user: false }];
