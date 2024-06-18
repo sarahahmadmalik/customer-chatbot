@@ -40,23 +40,6 @@ html, body{
   display: none; /* Chrome, Safari, Opera */
 }
 
-@-webkit-keyframes typingAnimation {
-  0%, 100% {
-    -webkit-transform: translateY(0);
-  }
-  50% {
-    -webkit-transform: translateY(-10px);
-  }
-}
-
-@-moz-keyframes typingAnimation {
-  0%, 100% {
-    -moz-transform: translateY(0);
-  }
-  50% {
-    -moz-transform: translateY(-10px);
-  }
-}
 
 
 @media (max-width: 768px) {
