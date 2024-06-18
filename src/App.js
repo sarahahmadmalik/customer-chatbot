@@ -45,7 +45,7 @@ const App = () => {
     await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     try {
-      const response = await axios.post('http://localhost:5000/api/message', { message: input });
+      const response = await axios.post('/api/message', { message: input });
       const botResponse = response.data.fulfillmentText;
       setMessages([...newMessages, { text: botResponse, user: false }]);
     } catch (error) {
