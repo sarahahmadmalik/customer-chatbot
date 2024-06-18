@@ -11,21 +11,9 @@ const { json } = bodyParser;
 const { SessionsClient } = dialogflow;
 
 const app = express();
-const allowedOrigins = [
-    'https://customer-chatbot-ai.vercel.app',
-];
+
 app.use(json());
-app.use(cors({
-    origin: function(origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ["GET", "POST"],
-    credentials: true
-}));
+app.use(cors({origin: ["https://customer-chatbot-ai.vercel.app"], methods: ["GET", "POST"], credentials: true}));
 
 const projectId = process.env.PROJECT_ID;
 const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
