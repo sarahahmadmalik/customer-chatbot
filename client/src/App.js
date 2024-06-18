@@ -50,7 +50,7 @@ const App = () => {
     const response = await axios.post('https://customer-chatbot-mauve.vercel.app/api/message', {message:input}, {
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://customer-chatbot-ai.vercel.app', // Allow only your frontend URL
+                'Access-Control-Allow-Origin': 'https://customer-chatbot-7mg229s1l-sara-ahmad-maliks-projects.vercel.app', // Allow only your frontend URL
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Authorization',
             },
