@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import dialogflow from 'dialogflow';
 import cors from 'cors';
 import dotenv from 'dotenv';
-// import { v4 } from 'uuid';
+import  v4  from 'uuid';
 
 dotenv.config();
 
@@ -13,11 +13,11 @@ const { SessionsClient } = dialogflow;
 const app = express();
 
 app.use(json());
-app.use(cors({origin: ["https://customer-chatbot-ai.vercel.app"], methods: ["GET", "POST"], credentials: true}));
+app.use(cors());
 
 const projectId = process.env.PROJECT_ID;
 const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-// const sessionId = v4()
+ const sessionId = v4()
 const sessionClient = new SessionsClient({ keyFilename: credentialsPath });
 
 app.get("/", (req, res) => res.json("Express on Vercel"));
@@ -26,7 +26,7 @@ app.post('/api/message', async (req, res) => {
     const { message } = req.body;
 
     try {
-        const sessionPath = sessionClient.sessionPath(projectId, "");
+        const sessionPath = sessionClient.sessionPath(projectId, sessionId);
         const request = {
             session: sessionPath,
             queryInput: {
