@@ -13,7 +13,7 @@ const { SessionsClient } = dialogflow;
 const app = express();
 
 app.use(json());
-app.use(cors({origin: ["https://customer-chatbot-mauve.vercel.app"], methods: ["GET", "POST"], credentials: true}));
+app.use(cors({origin: ["https://customer-chatbot-eight.vercel.app"], methods: ["GET", "POST"], credentials: true}));
 
 const projectId = process.env.PROJECT_ID;
 const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
