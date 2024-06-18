@@ -10,7 +10,8 @@ const App = () => {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const messagesEndRef = useRef(null);
-  const addBotMessage = useCallback(async (text) => {
+
+  const addBotMessage = async (text) => {
     const newMessages = [...messages, { text, user: false }];
     setMessages(newMessages);
 
@@ -23,12 +24,12 @@ const App = () => {
     // } catch (error) {
     //   console.error('Error sending message to backend:', error);
     // }
-  }, [messages]);
+  };
 
 
   useEffect(() => {
     addBotMessage("Hi, what can I help you with?");
-  }, [addBotMessage]);
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
