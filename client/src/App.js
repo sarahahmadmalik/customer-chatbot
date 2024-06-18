@@ -47,7 +47,7 @@ const App = () => {
     await new Promise(resolve => setTimeout(resolve, 1000)); 
 
     try {
-    const response = await axios.post('https://customer-chatbot-mauve.vercel.app/api/message', {message:input}, {
+    const response = await axios.post('https://customer-chatbot-eight.vercel.app/api/message', {message:input}, {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'https://customer-chatbot-7mg229s1l-sara-ahmad-maliks-projects.vercel.app', // Allow only your frontend URL
